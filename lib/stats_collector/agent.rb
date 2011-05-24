@@ -70,7 +70,7 @@ module StatsCollector
 
       response = ::Net::HTTP.get_response(config.host, path, PORT)
       
-      unless response.is_a?(Net::HTTPSuccess)
+      unless response.is_a?(::Net::HTTPSuccess)
         config.logger.error "[StatsReporter] Unexpected response from server (#{ response.code }): #{ response.message }"
       end
     end
