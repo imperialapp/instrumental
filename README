@@ -1,0 +1,7 @@
+= Rails Setup
+
+# config/initializers/stats_collector.rb
+StatsCollector.configure do |config|
+  config.api_key     = "YOUR_API_KEY_GOES_HERE"
+end
+StatsCollector.boot!
