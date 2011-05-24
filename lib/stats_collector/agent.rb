@@ -1,11 +1,12 @@
 require 'singleton'
+require 'net/http'
 
 module StatsCollector
   class Agent
     include Singleton
 
     PORT      = 80
-    
+
     @@queue          = []
     @@queue_mutex    = Mutex.new
 
@@ -68,9 +69,9 @@ module StatsCollector
       path = "#{ config.path }#{ type }?#{ attributes_string }"
       config.logger.debug("Calling #{ path }")
 
-      response = ::Net::HTTP.get_response(config.host, path, PORT)
-      
-      unless response.is_a?(::Net::HTTPSuccess)
+      response = Net::HTTP.get_response(config.host, path, PORT)
+
+      unless response.is_a?(Net::HTTPSuccess)
         config.logger.error "[StatsReporter] Unexpected response from server (#{ response.code }): #{ response.message }"
       end
     end
