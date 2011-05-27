@@ -26,6 +26,7 @@ module StatsCollector
         end
 
       else
+        @config.logger.debug('Starting a new worker process')
         Agent.instance.setup_and_run
       end
     end

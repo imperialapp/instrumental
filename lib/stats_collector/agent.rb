@@ -7,17 +7,22 @@ module StatsCollector
 
     PORT      = 80
 
-    @@queue          = []
+    @@queue          = { :count => {}, :measure => {} }
     @@queue_mutex    = Mutex.new
 
     def report(type, name, value)
       # TODO: Print this to log?
       return nil unless config && config.enabled?
 
-      hsh = { :type => type, :name => name, :value => value}
-      config.logger.debug("Pushing #{ hsh.inspect } onto queue")
+      type = type.to_sym
       @@queue_mutex.synchronize do
-        @@queue.push(hsh)
+        if type == :count
+          @@queue[:count][name] ||= 0
+          @@queue[:count][name] += value
+        else
+          @@queue[:measure][name] ||= []
+          @@queue[:measure][name] << value
+        end
       end
     end
 
@@ -29,15 +34,20 @@ module StatsCollector
         begin
           @intervalometer.run do
             config.logger.debug('Intervalometer run')
-            new_queue_items = []
+            new_queue_items = {}
             @@queue_mutex.synchronize do
               new_queue_items = @@queue.dup
-              @@queue.clear
+              @@queue[:count] = {}
+              @@queue[:measure] = {}
               config.logger.debug("Queue contains #{new_queue_items.inspect}")
             end
 
-            new_queue_items.each do |queue_item|
-              send_report(queue_item)
+            new_queue_items[:count].each do |name, value|
+              send_report(:count, name, value)
+            end
+
+            new_queue_items[:measure].each do |name, values|
+              send_report(:measure, name, values.join(','))
             end
           end
         rescue => e
@@ -59,9 +69,9 @@ module StatsCollector
       StatsCollector.config
     end
 
-    def send_report(attributes)
-      type = attributes.delete(:type)
-      attributes[:name] = "#{ config.name_prefix }#{ attributes[:name] }"
+    def send_report(type, name, value)
+      attributes = { :value => value }
+      attributes[:name] = "#{ config.name_prefix }#{ name }"
       attributes[:api_key] = config.api_key
 
       attributes_string = attributes.to_a.map{ |a| a.join('=') }.join('&')
