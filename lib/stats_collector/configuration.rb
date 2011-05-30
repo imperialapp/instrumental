@@ -17,7 +17,7 @@ module StatsCollector
       @host            = 'stats.douglasfshearer.com'
       @logger          = defined?(::Rails.logger) ? Rails.logger : Logger.new(STDOUT)
       @name_prefix     = ''
-      @path            = '/api/'
+      @path            = '/in/'
       @report_interval = DEFAULT_REPORT_INTERVAL
     end
 
