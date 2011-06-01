@@ -9,13 +9,12 @@ module StatsCollector
     attr_reader :path
     attr_reader :report_interval
     attr_accessor :enabled
-    attr_accessor :logger
+    attr_writer :logger
     attr_accessor :name_prefix
 
     def initialize
       @enabled         = defined?(::Rails.env) ? Rails.env.production? : true
       @host            = 'stats.douglasfshearer.com'
-      @logger          = defined?(::Rails.logger) ? Rails.logger : Logger.new(STDOUT)
       @name_prefix     = ''
       @path            = '/in/'
       @report_interval = DEFAULT_REPORT_INTERVAL
@@ -51,6 +50,12 @@ module StatsCollector
 
     def api_key
       @api_key || raise(ArgumentError, 'API key must be set in configuration')
+    end
+
+    def logger
+      # The Rails logger is not available in an initializer, so we have to look for on-demand.
+      @logger ||= defined?(::Rails.logger) ? Rails.logger : Logger.new(STDOUT)
+      @logger
     end
 
   end
