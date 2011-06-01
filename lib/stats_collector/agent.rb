@@ -70,7 +70,11 @@ module StatsCollector
     end
 
     def send_report(type, name, value)
-      attributes = { :value => value }
+      if type == :measure
+        attributes = { :values => value }
+      else
+        attributes = { :value => value }
+      end
       attributes[:name] = "#{ config.name_prefix }#{ name }"
       attributes[:api_key] = config.api_key
 
