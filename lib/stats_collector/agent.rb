@@ -75,7 +75,7 @@ module StatsCollector
       else
         attributes = { :value => value }
       end
-      attributes[:name] = "#{ config.name_prefix }#{ name }"
+      attributes[:name] = CGI.escape("#{ config.name_prefix }#{ name }")
       attributes[:api_key] = config.api_key
 
       attributes_string = attributes.to_a.map{ |a| a.join('=') }.join('&')
