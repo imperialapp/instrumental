@@ -21,7 +21,7 @@ describe StatsCollector::Configuration do
     end
 
     it "should have a path" do
-      @config.path.should == '/api/'
+      @config.path.should == '/in/'
     end
 
     it "should have a report interval" do

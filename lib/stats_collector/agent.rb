@@ -1,5 +1,6 @@
 require 'singleton'
 require 'net/http'
+require 'cgi'
 
 module StatsCollector
   class Agent
