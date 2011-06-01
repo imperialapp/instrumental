@@ -1,7 +1,3 @@
-= Rails Setup
+For setup and configuration information, please see:
 
-# config/initializers/stats_collector.rb
-StatsCollector.configure do |config|
-  config.api_key     = "YOUR_API_KEY_GOES_HERE"
-end
-StatsCollector.boot!
+http://stats.douglasfshearer.com/pages/ruby_on_rails
