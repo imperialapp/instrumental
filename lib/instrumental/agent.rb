@@ -2,11 +2,11 @@ require 'singleton'
 require 'net/http'
 require 'cgi'
 
-module StatsCollector
+module Instrumental
   class Agent
     include Singleton
 
-    PORT      = 80
+    PORT = 80
 
     @@queue          = { :count => {}, :measure => {} }
     @@queue_mutex    = Mutex.new
@@ -67,7 +67,7 @@ module StatsCollector
     protected
 
     def config
-      StatsCollector.config
+      Instrumental.config
     end
 
     def send_report(type, name, value)
@@ -87,7 +87,7 @@ module StatsCollector
       response = Net::HTTP.get_response(config.host, path, PORT)
 
       unless response.is_a?(Net::HTTPSuccess)
-        config.logger.error "[StatsReporter] Unexpected response from server (#{ response.code }): #{ response.message }"
+        config.logger.error "[Instrumental] Unexpected response from server (#{ response.code }): #{ response.message }"
       end
     end
 

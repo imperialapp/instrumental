@@ -1,6 +1,6 @@
 require 'logger'
 
-module StatsCollector
+module Instrumental
   class Configuration
 
     DEFAULT_REPORT_INTERVAL = 15.0

@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = 'metricapp_rb'
+  s.name = 'instrumental'
   s.version = '0.1.3'
   s.homepage = 'http://stats.douglasfshearer.com'
 

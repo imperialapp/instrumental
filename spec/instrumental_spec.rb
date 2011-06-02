@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'stats_collector'
+require 'instrumental'
 
-describe StatsCollector do
+describe Instrumental do
   
   describe "configure" do
     

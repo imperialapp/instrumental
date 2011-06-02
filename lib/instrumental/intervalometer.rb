@@ -1,4 +1,4 @@
-module StatsCollector
+module Instrumental
   class Intervalometer
 
     def initialize(period=60.0)

@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'stats_collector/agent'
+require 'instrumental/agent'
 
-include StatsCollector
+include Instrumental
 
-describe StatsCollector::Agent do
+describe Instrumental::Agent do
 
   describe "report" do
 

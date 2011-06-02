@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'stats_collector/intervalometer'
+require 'instrumental/intervalometer'
 
-include StatsCollector
+include Instrumental
 
-describe StatsCollector::Intervalometer do
+describe Instrumental::Intervalometer do
 
   describe "initialize" do
 

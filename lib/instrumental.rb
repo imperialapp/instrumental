@@ -1,9 +1,9 @@
-require 'stats_collector/agent'
-require 'stats_collector/configuration'
-require 'stats_collector/intervalometer'
-require 'stats_collector/stats_reporter'
+require 'instrumental/agent'
+require 'instrumental/configuration'
+require 'instrumental/intervalometer'
+require 'instrumental/instrument'
 
-module StatsCollector
+module Instrumental
 
   @config = Configuration.new
 
@@ -36,6 +36,6 @@ module StatsCollector
     @config
   end
 
-end
+  include Instrument
 
-include StatsCollector
+end

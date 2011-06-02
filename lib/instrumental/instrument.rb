@@ -1,5 +1,5 @@
-module StatsCollector
-  class StatsReporter
+module Instrumental
+  module Instrument
 
     def self.count(name, value=1)
       Agent.instance.report(:count, name, value)

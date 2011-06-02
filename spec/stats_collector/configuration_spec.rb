@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'stats_collector/configuration'
+require 'instrumental/configuration'
 
-include StatsCollector
+include Instrumental
 
 class Rails;end # Used for testing the logger.
 
-describe StatsCollector::Configuration do
+describe Instrumental::Configuration do
 
   before(:each) do
     @config = Configuration.new

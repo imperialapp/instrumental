@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'stats_collector/stats_reporter'
+require 'instrumental/instrument'
 
-include StatsCollector
+include Instrumental
 
 class Agent;end
 
-describe StatsCollector::StatsReporter do
+describe Instrumental::Instrument do
 
   before(:each) do
     Agent.stub(:instance).and_return(@mock_agent_instance = mock(:agent_instance))
@@ -16,7 +16,7 @@ describe StatsCollector::StatsReporter do
       it "should send a value of 1" do
         @mock_agent_instance.should_receive(:report).with(:count, 'my name', 1)
 
-        StatsReporter.count('my name')
+        Instrument.count('my name')
       end
     end
 
@@ -24,7 +24,7 @@ describe StatsCollector::StatsReporter do
       it "should send the passed value" do
         @mock_agent_instance.should_receive(:report).with(:count, 'my name', 23)
 
-        StatsReporter.count('my name', 23)
+        Instrument.count('my name', 23)
       end
     end
   end
@@ -33,7 +33,7 @@ describe StatsCollector::StatsReporter do
     it "should send the passed value" do
       @mock_agent_instance.should_receive(:report).with(:measure, 'my name', 19.2)
 
-      StatsReporter.measure('my name', 19.2)
+      Instrument.measure('my name', 19.2)
     end
   end
 
@@ -45,7 +45,7 @@ describe StatsCollector::StatsReporter do
 
       @mock_agent_instance.should_receive(:report).with(:measure, 'my name', 1.574)
 
-      StatsReporter.timer('my name') { 'do stuff' }
+      Instrument.timer('my name') { 'do stuff' }
     end
   end
 

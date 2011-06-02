@@ -1,1 +1,1 @@
-require 'stats_collector'
+require 'instrumental'
