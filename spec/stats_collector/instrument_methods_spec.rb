@@ -1,11 +1,9 @@
 require 'spec_helper'
-require 'instrumental/instrument'
-
-include Instrumental
+require 'instrumental'
 
 class Agent;end
 
-describe Instrumental::Instrument do
+describe 'public instrument methods' do
 
   before(:each) do
     Agent.stub(:instance).and_return(@mock_agent_instance = mock(:agent_instance))

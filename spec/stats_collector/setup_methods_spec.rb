@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'instrumental'
 
-describe Instrumental do
+describe 'setup methods' do
   
   describe "configure" do
     
