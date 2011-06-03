@@ -6,6 +6,7 @@ module Instrumental
     DEFAULT_REPORT_INTERVAL = 15.0
 
     attr_reader :host
+    attr_reader :port
     attr_reader :path
     attr_reader :report_interval
     attr_accessor :enabled
@@ -15,6 +16,7 @@ module Instrumental
     def initialize
       @enabled         = defined?(::Rails.env) ? Rails.env.production? : true
       @host            = 'stats.douglasfshearer.com'
+      @port            = 80
       @name_prefix     = ''
       @path            = '/in/'
       @report_interval = DEFAULT_REPORT_INTERVAL
@@ -28,6 +30,12 @@ module Instrumental
       @host = val
 
       raise(ArgumentError, "host is invalid") unless @host =~ /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?)?$/ix
+    end
+
+    def port=(val)
+      @port = val
+
+      raise(ArgumentError, "port must be an integer greater than 0") unless @port.to_i > 0
     end
 
     def path=(val)

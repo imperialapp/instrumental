@@ -6,8 +6,6 @@ module Instrumental
   class Agent
     include Singleton
 
-    PORT = 80
-
     @@queue          = { :count => {}, :measure => {} }
     @@queue_mutex    = Mutex.new
 
@@ -95,7 +93,7 @@ module Instrumental
     def post_response(path, params)
       req = Net::HTTP::Post.new(path)
       req.set_form_data(params)
-      Net::HTTP.new(config.host, PORT).start { |h| h.request(req) }
+      Net::HTTP.new(config.host, config.port).start { |h| h.request(req) }
     end
 
   end

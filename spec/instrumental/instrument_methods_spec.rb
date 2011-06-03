@@ -37,11 +37,11 @@ describe 'public instrument methods' do
 
   describe "timer" do
     it "should send the calculated time" do
-      t = Time.now
-      Time.should_receive(:now).and_return(t)
-      Time.should_receive(:now).and_return(t + 1.574)
+      delta = 1.574
+      Time.should_receive(:now).and_return(0)
+      Time.should_receive(:now).and_return(delta)
 
-      @mock_agent_instance.should_receive(:report).with(:measure, 'my name', 1.574)
+      @mock_agent_instance.should_receive(:report).with(:measure, 'my name', delta)
 
       Instrument.timer('my name') { 'do stuff' }
     end

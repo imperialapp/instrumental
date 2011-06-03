@@ -20,6 +20,10 @@ describe Instrumental::Configuration do
       @config.host.should == 'stats.douglasfshearer.com'
     end
 
+    it "should have a port" do
+      @config.port.should == 80
+    end
+
     it "should have a path" do
       @config.path.should == '/in/'
     end
@@ -132,6 +136,33 @@ describe Instrumental::Configuration do
     context "with a blank host" do
       it "should raise an argument error" do
         lambda { @config.host = '' }.should raise_error(ArgumentError, 'host is invalid')
+      end
+    end
+  end
+
+  describe "Setting the port" do
+    context "with a valid port" do
+      it "should not raise an error" do
+        lambda { @config.port = 3000 }.should_not raise_error
+      end
+
+      it "should have the port set" do
+        @config.port = 3000
+        @config.port.should == 3000
+      end
+    end
+
+    context "with an invalid port" do
+      it "should raise an argument error for a string" do
+        lambda { @config.port = 'mince' }.should raise_error(ArgumentError, 'port must be an integer greater than 0')
+      end
+
+      it "should raise an argument error for nil" do
+        lambda { @config.port = nil }.should raise_error(ArgumentError, 'port must be an integer greater than 0')
+      end
+
+      it "should raise an argument error for 0" do
+        lambda { @config.port = 0 }.should raise_error(ArgumentError, 'port must be an integer greater than 0')
       end
     end
   end
