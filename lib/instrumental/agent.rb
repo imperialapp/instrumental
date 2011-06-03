@@ -76,19 +76,26 @@ module Instrumental
       else
         attributes = { :value => value }
       end
+
       attributes[:name] = CGI.escape("#{ config.name_prefix }#{ name }")
       attributes[:api_key] = config.api_key
 
-      attributes_string = attributes.to_a.map{ |a| a.join('=') }.join('&')
+      # attributes_string = attributes.to_a.map{ |a| a.join('=') }.join('&')
 
-      path = "#{ config.path }#{ type }?#{ attributes_string }"
-      config.logger.debug("Calling #{ path }")
+      path = "#{ config.path }#{ type }"
+      # config.logger.debug("Calling #{ path }")
 
-      response = Net::HTTP.get_response(config.host, path, PORT)
+      response = post_response(path, attributes)
 
       unless response.is_a?(Net::HTTPSuccess)
         config.logger.error "[Instrumental] Unexpected response from server (#{ response.code }): #{ response.message }"
       end
+    end
+
+    def post_response(path, params)
+      req = Net::HTTP::Post.new(path)
+      req.set_form_data(params)
+      Net::HTTP.new(config.host, PORT).start { |h| h.request(req) }
     end
 
   end
