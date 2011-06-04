@@ -75,7 +75,7 @@ module Instrumental
         attributes = { :value => value }
       end
 
-      attributes[:name] = URL.escape("#{ config.name_prefix }#{ name }")
+      attributes[:name] = URI.escape("#{ config.name_prefix }#{ name }")
       attributes[:api_key] = config.api_key
 
       # attributes_string = attributes.to_a.map{ |a| a.join('=') }.join('&')
