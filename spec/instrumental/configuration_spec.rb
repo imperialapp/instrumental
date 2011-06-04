@@ -17,7 +17,7 @@ describe Instrumental::Configuration do
     end
 
     it "should have a host" do
-      @config.host.should == 'stats.douglasfshearer.com'
+      @config.host.should == 'in.imperialapp.com'
     end
 
     it "should have a port" do
@@ -112,7 +112,7 @@ describe Instrumental::Configuration do
   end
 
   describe "Setting the host" do
-    %w{stats.douglasfshearer.com foo.bar.com foo.bar.rar.me}.each do |valid_host|
+    %w{in.imperialapp.com foo.bar.com foo.bar.rar.me}.each do |valid_host|
       context "with a valid host, #{valid_host}" do
         it "should not raise an error" do
           lambda { @config.host = valid_host }.should_not raise_error
@@ -125,7 +125,7 @@ describe Instrumental::Configuration do
       end
     end
 
-    %w{stats.douglasfshearer.com/ http://stats.douglasfshearer.com mince}.each do |invalid_host|
+    %w{in.imperialapp.com/ http://in.imperialapp.com mince}.each do |invalid_host|
       context "with invalid host, #{invalid_host}," do
         it "should raise an argument error" do
           lambda { @config.host = invalid_host }.should raise_error(ArgumentError, 'host is invalid')

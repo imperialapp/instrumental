@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = 'instrumental'
   s.version = '0.1.3'
-  s.homepage = 'http://stats.douglasfshearer.com'
+  s.homepage = 'http://imperialapp.com'
 
   s.authors = 'Douglas F Shearer'
-  s.email   = 'me@douglasfshearer.com'
+  s.email   = 'support@imperialapp.com'
 
   s.files = `git ls-files`.split("\n")
 

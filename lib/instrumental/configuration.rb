@@ -15,7 +15,7 @@ module Instrumental
 
     def initialize
       @enabled         = defined?(::Rails.env) ? Rails.env.production? : true
-      @host            = 'stats.douglasfshearer.com'
+      @host            = 'in.imperialapp.com'
       @port            = 80
       @name_prefix     = ''
       @path            = '/in/'
