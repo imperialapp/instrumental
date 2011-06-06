@@ -1,7 +1,6 @@
 require 'instrumental/agent'
 require 'instrumental/configuration'
 require 'instrumental/intervalometer'
-require 'instrumental/instrument'
 
 module Instrumental
 

@@ -14,7 +14,7 @@ describe 'public instrument methods' do
       it "should send a value of 1" do
         @mock_agent_instance.should_receive(:report).with(:count, 'my name', 1)
 
-        Instrument.count('my name')
+        Instrumental.count('my name')
       end
     end
 
@@ -22,7 +22,7 @@ describe 'public instrument methods' do
       it "should send the passed value" do
         @mock_agent_instance.should_receive(:report).with(:count, 'my name', 23)
 
-        Instrument.count('my name', 23)
+        Instrumental.count('my name', 23)
       end
     end
   end
@@ -31,7 +31,7 @@ describe 'public instrument methods' do
     it "should send the passed value" do
       @mock_agent_instance.should_receive(:report).with(:measure, 'my name', 19.2)
 
-      Instrument.measure('my name', 19.2)
+      Instrumental.measure('my name', 19.2)
     end
   end
 
@@ -43,7 +43,7 @@ describe 'public instrument methods' do
 
       @mock_agent_instance.should_receive(:report).with(:measure, 'my name', delta)
 
-      Instrument.timer('my name') { 'do stuff' }
+      Instrumental.timer('my name') { 'do stuff' }
     end
   end
 
