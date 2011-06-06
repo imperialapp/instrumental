@@ -20,3 +20,15 @@ end
 
 desc "Default: run the specs"
 task :default => [:spec]
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name = "instrumental"
+    s.summary = s.description = "Rails instrumentation and client for imperialapp.com"
+    s.email = "support@imperialapp.com"
+    s.homepage = "http://github.com/imperialapp/instrumental"
+    s.authors = ["Douglas F Shearer"]
+    s.files =  `git ls-files`.split("\n")
+  end
+end
