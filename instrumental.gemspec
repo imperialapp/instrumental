@@ -9,27 +9,25 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Douglas F Shearer"]
-  s.date = %q{2011-06-06}
+  s.date = %q{2011-06-08}
   s.description = %q{Rails instrumentation and client for imperialapp.com}
   s.email = %q{support@imperialapp.com}
   s.extra_rdoc_files = [
-    "README",
-    "TODO"
+    "README"
   ]
   s.files = [
+    ".gitignore",
     "Gemfile",
     "Gemfile.lock",
     "MIT-LICENCE",
     "README",
     "Rakefile",
-    "TODO",
     "VERSION",
     "init.rb",
     "instrumental.gemspec",
     "lib/instrumental.rb",
     "lib/instrumental/agent.rb",
     "lib/instrumental/configuration.rb",
-    "lib/instrumental/instrument.rb",
     "lib/instrumental/intervalometer.rb",
     "lib/tasks/install.rake",
     "lib/tasks/templates/instrumental.rb.erb",
@@ -49,16 +47,16 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rake>, ["= 0.8.7"])
+      s.add_runtime_dependency(%q<rake>, [">= 0"])
       s.add_runtime_dependency(%q<rspec>, [">= 0"])
       s.add_runtime_dependency(%q<jeweler>, [">= 0"])
     else
-      s.add_dependency(%q<rake>, ["= 0.8.7"])
+      s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rake>, ["= 0.8.7"])
+    s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
   end
