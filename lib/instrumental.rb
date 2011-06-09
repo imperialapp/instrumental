@@ -46,7 +46,7 @@ module Instrumental
   def self.timer(name)
     start_time = Time.now
     yield
-    self.measure(name, Time.now - start_time)
+    self.measure(name, (Time.now - start_time) * 1000) # milliseconds
   end
 
 end
