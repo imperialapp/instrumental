@@ -41,7 +41,7 @@ describe 'public instrument methods' do
       Time.should_receive(:now).and_return(0)
       Time.should_receive(:now).and_return(delta)
 
-      @mock_agent_instance.should_receive(:report).with(:measure, 'my name', delta)
+      @mock_agent_instance.should_receive(:report).with(:measure, 'my name', delta*1000)
 
       Instrumental.timer('my name') { 'do stuff' }
     end
