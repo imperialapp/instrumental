@@ -78,7 +78,8 @@ module Instrumental
       else
         params = { :value => value }
       end
-
+      
+      params[:name] = name
       path = "#{ config.path }#{ type }"
 
       response = post_response(path, params)
