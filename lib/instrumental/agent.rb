@@ -25,6 +25,10 @@ module Instrumental
       end
     end
 
+    def milestone(name = Time.now.utc.to_s)
+      post_response("#{ config.path }/milestone", { :name => name })
+    end
+
     def setup_and_run
       @intervalometer = Intervalometer.new(config.report_interval)
 
@@ -70,20 +74,14 @@ module Instrumental
 
     def send_report(type, name, value)
       if type == :measure
-        attributes = { :values => value }
+        params = { :values => value }
       else
-        attributes = { :value => value }
+        params = { :value => value }
       end
 
-      attributes[:name] = URI.escape("#{ config.name_prefix }#{ name }")
-      attributes[:api_key] = config.api_key
-
-      # attributes_string = attributes.to_a.map{ |a| a.join('=') }.join('&')
-
       path = "#{ config.path }#{ type }"
-      # config.logger.debug("Calling #{ path }")
 
-      response = post_response(path, attributes)
+      response = post_response(path, params)
 
       unless response.is_a?(Net::HTTPSuccess)
         config.logger.error "[Instrumental] Unexpected response from server (#{ response.code }): #{ response.message }"
@@ -91,6 +89,9 @@ module Instrumental
     end
 
     def post_response(path, params)
+      params[:api_key] = config.api_key
+      params[:name] = URI.escape("#{ config.name_prefix }#{ params[:name] }")
+
       req = Net::HTTP::Post.new(path)
       req.set_form_data(params)
       Net::HTTP.new(config.host, config.port).start { |h| h.request(req) }

@@ -49,4 +49,8 @@ module Instrumental
     self.measure(name, (Time.now - start_time) * 1000) # milliseconds
   end
 
+  def self.milestone(name)
+    Agent.instance.milestone(name)
+  end
+
 end

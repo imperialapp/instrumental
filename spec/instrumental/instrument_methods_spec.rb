@@ -47,4 +47,12 @@ describe 'public instrument methods' do
     end
   end
 
+  describe "measure" do
+    it "should send the passed value" do
+      @mock_agent_instance.should_receive(:milestone).with('my name')
+
+      Instrumental.milestone('my name')
+    end
+  end
+
 end
