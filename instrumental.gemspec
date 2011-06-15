@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{instrumental}
-  s.version = "0.1.7"
+  s.version = "0.1.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Douglas F Shearer"]
-  s.date = %q{2011-06-10}
+  s.date = %q{2011-06-15}
   s.description = %q{Rails instrumentation and client for imperialapp.com}
   s.email = %q{support@imperialapp.com}
   s.extra_rdoc_files = [
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "lib/instrumental/agent.rb",
     "lib/instrumental/configuration.rb",
     "lib/instrumental/intervalometer.rb",
+    "lib/instrumental/railtie.rb",
     "lib/tasks/install.rake",
     "lib/tasks/milestone.rake",
     "lib/tasks/templates/instrumental.rb.erb",
