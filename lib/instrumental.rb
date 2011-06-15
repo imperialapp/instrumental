@@ -1,6 +1,8 @@
 require 'instrumental/agent'
 require 'instrumental/configuration'
 require 'instrumental/intervalometer'
+require 'instrumental/railtie' if defined?(::Rails)
+
 
 module Instrumental
 

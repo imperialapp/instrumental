@@ -3,9 +3,15 @@ require 'instrumental/configuration'
 
 include Instrumental
 
-class Rails;end # Used for testing the logger.
-
 describe Instrumental::Configuration do
+
+  before(:all) do
+    @rails_class = class Rails;end # Used for testing the logger.
+  end
+
+  after(:all) do
+    @rails_class = nil
+  end
 
   before(:each) do
     @config = Configuration.new
