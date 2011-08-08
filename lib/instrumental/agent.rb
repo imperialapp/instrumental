@@ -26,7 +26,7 @@ module Instrumental
     end
 
     def milestone(name = Time.now.utc.to_s)
-      post_response("#{ config.path }/milestone", { :name => name })
+      post_response("#{ config.path }milestone", { :name => name })
     end
 
     def setup_and_run
